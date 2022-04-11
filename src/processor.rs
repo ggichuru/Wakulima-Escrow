@@ -7,7 +7,7 @@ use solana_program::{
     sysvar::{rent::Rent, Sysvar},
 };
 
-use crate::{error::EscrowError, instruction::EscrowInstruction};
+use crate::{error::EscrowError, instruction::EscrowInstruction, state::Escrow};
 
 pub struct Processor;
 impl Processor {
