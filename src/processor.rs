@@ -18,7 +18,7 @@ impl Processor {
         accounts: &[AccountInfo],
         instruction_data: &[u8],
     ) -> ProgramResult {
-        let instruction = EscrowInstruction::unpack(instruction_data);
+        let instruction = EscrowInstruction::unpack(instruction_data)?;
 
         match instruction {
             EscrowInstruction::InitEscrow { amount } => {
@@ -50,7 +50,7 @@ impl Processor {
         }
 
         let escrow_account = next_account_info(account_info_iter)?;
-        let rent = &Rent::from_account_info(next_account_info(account_info_iter)?);
+        let rent = &Rent::from_account_info(next_account_info(account_info_iter)?)?;
         if !rent.is_exempt(escrow_account.lamports(), escrow_account.data_len()) {
             return Err(EscrowError::NotRentExempt.into());
         }
