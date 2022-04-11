@@ -1,2 +1,4 @@
-// Register entrypoint module
+// Registering all modules
+
 pub mod entrypoint;
+pub mod instruction;
